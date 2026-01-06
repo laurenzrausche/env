@@ -1,15 +1,19 @@
 {
-  "name": "@laurenzrausche/[NAME]",
+  "name": "@laurenzrausche/env",
   "version": "0.0.0",
-  "description": "A simple [TYPE] tool for my projects.",
-  "keywords": [],
-  "homepage": "https://github.com/laurenzrausche/[NAME]#readme",
+  "description": "A simple process.env tool for my projects.",
+  "keywords": [
+    "env",
+    "process.env",
+    "process"
+  ],
+  "homepage": "https://github.com/laurenzrausche/env#readme",
   "bugs": {
-    "url": "https://github.com/laurenzrausche/[NAME]/issues"
+    "url": "https://github.com/laurenzrausche/env/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/laurenzrausche/[NAME].git"
+    "url": "git+https://github.com/laurenzrausche/env.git"
   },
   "license": "MIT",
   "author": "Laurenz Rausche <laurenz@laurenz-rausche.de>",
@@ -27,7 +31,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@laurenzrausche/[NAME]": "file:./",
+    "@laurenzrausche/env": "file:./",
     "@types/node": "^25.0.3",
     "rimraf": "^6.1.2",
     "tsc-alias": "^1.8.16",
