@@ -25,7 +25,9 @@
     "build:compile": "tsc && tsc-alias",
     "console:clear": "node -e \"console.clear()\"",
     "prepare": "npm run build",
-    "test": "rimraf test/*.log && tsx test/test.ts"
+    "test": "rimraf test/*.log && npm run test:with-envs && npm run test:without-envs",
+    "test:with-envs": "_0_UNSET=SET-0 _1_REQUIRED=SET-1 _2_NOT_REQUIRED=SET-2 _3_FALLBACK=SET-3 _4_NO_FALLBACK=SET-4 _5_REQUIRED_FALLBACK=SET-5 _6_REQUIRED_NO_FALLBACK=SET-6 _7_NOT_REQUIRED_FALLBACK=SET-7 _8_NOT_REQUIRED_NO_FALLBACK=SET-8 tsx test/test.ts",
+    "test:without-envs": "tsx test/test.ts"
   },
   "publishConfig": {
     "access": "public"
