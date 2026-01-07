@@ -1,6 +1,9 @@
+// template that can be used in other files
+export type EnvVarsTemplate = Record<string, { fallback?: string }>;
+
 // class wrapper to store possible envs and fallback values
 export class Env<
-  EnvVars extends Record<string, { fallback?: string }>,
+  EnvVars extends EnvVarsTemplate,
   EnvNames extends keyof EnvVars = keyof EnvVars,
 > {
   // shorthand to store possible envs and fallback values internal
@@ -10,7 +13,6 @@ export class Env<
   public get<EnvName extends EnvNames>(
     name: EnvName,
   ): EnvVars[EnvName]["fallback"] extends string ? string : string | undefined {
-
     // return process.env[name] or if undefined return fallback value
     return process.env[name as string] ?? (this.envVars[name]?.fallback as any);
   }
