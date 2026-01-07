@@ -1,6 +1,6 @@
 {
   "name": "@laurenzrausche/env",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple process.env tool for my projects.",
   "keywords": [
     "env",
@@ -25,9 +25,7 @@
     "build:compile": "tsc && tsc-alias",
     "console:clear": "node -e \"console.clear()\"",
     "prepare": "npm run build",
-    "test": "rimraf test/*.log && npm run test:with-envs && npm run test:without-envs",
-    "test:with-envs": "UNSET=SET-UNSET FALLBACK=SET-FALLBACK UNDEFINED=SET-UNDEFINED tsx test/test.ts",
-    "test:without-envs": "tsx test/test.ts"
+    "test": "rimraf test/*.log && UNSET=SET-UNSET FALLBACK=SET-FALLBACK UNDEFINED=SET-UNDEFINED tsx test/test.ts && tsx test/test.ts"
   },
   "publishConfig": {
     "access": "public"
