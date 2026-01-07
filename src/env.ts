@@ -1,25 +1,17 @@
+// class wrapper to store possible envs and fallback values
 export class Env<
-  EnvVars extends Record<
-    string,
-    | { required: true; fallback: string }
-    | { required?: false; fallback?: string }
-  >,
+  EnvVars extends Record<string, { fallback?: string }>,
   EnvNames extends keyof EnvVars = keyof EnvVars,
 > {
+  // shorthand to store possible envs and fallback values internal
   constructor(private envVars: EnvVars) {}
 
-  public get<EnvName extends EnvNames, T extends EnvVars[EnvName]>(
+  // wrapper for process.env that adds strong typing if fallback is defined and adds returns fallback if process.env is undefined
+  public get<EnvName extends EnvNames>(
     name: EnvName,
-  ):
-    | string
-    | (EnvVars[EnvName]["fallback"] extends string ? string : undefined) {
-    const processEnv = process.env[name as string];
-    if (typeof this.envVars[name]?.fallback === "string") {
-      return processEnv ?? this.envVars[name]?.fallback;
-    } else if (this.envVars[name]?.required) {
-      throw new Error(
-        `process.env.${name as string} is set as required but has no fallback`,
-      );
-    } else return processEnv as any;
+  ): EnvVars[EnvName]["fallback"] extends string ? string : string | undefined {
+
+    // return process.env[name] or if undefined return fallback value
+    return process.env[name as string] ?? (this.envVars[name]?.fallback as any);
   }
 }
